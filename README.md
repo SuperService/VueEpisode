@@ -11,10 +11,9 @@ This repo includes:
 
 During the event we'll use several 3rd party SaaS platforms to provide app funcationality like data storage, payment processing, etc. Those services include:
 
-- Deskree
+- Altogic
 - Contentful CMS
 - Stripe
-- and Big Commerce
 
 Please be sure to follow the steps in the event preparation doc to make sure these services are setup correctly.
 
