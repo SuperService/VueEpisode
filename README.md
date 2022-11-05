@@ -1,6 +1,6 @@
-# Vue.js Forge Episode 2 Codebase
+# Sauce Shopping
 
-![Vue.js Forge Episode 2](https://vuejsforge.com/images/logo-vuejs-forge.svg)
+![Vue.js Forge Episode 2](https://sauce-shopping.stormkit.dev/sauce.png)
 
 This repo includes:
 
