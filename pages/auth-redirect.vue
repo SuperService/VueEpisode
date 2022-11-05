@@ -3,7 +3,7 @@ const alerts = useAlertsStore();
 const loading = ref(false);
 const route = useRoute();
 const altogic = useAltogic();
-const accessToken = route.query.access_token;
+// const accessToken = route.query.access_token;
 
 definePageMeta({
   layout: "form-focus",
@@ -34,10 +34,10 @@ async function resendVerificationEmail() {
 }
 
 onMounted(async () => {
-  if (accessToken) {
-    const res = await altogic.user.get(accessToken);
-    window.location = "/";
-  }
+  // if (accessToken) {
+  //   const res = await altogic.user.get(accessToken);
+  //   window.location = "/";
+  // }
 })
 
 </script>
