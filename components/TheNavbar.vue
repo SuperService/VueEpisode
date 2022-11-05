@@ -10,9 +10,9 @@ const cartStore = useCartStore();
 <template>
   <div class="navbar bg-base-100 shadow-md">
     <div class="flex-1">
-      <NuxtLink class="btn btn-ghost normal-case text-xl" to="/">{{
-        siteName
-      }}</NuxtLink>
+      <NuxtLink class="normal-case text-xl" to="/">
+        <img src="/sauce.png" alt="logo" class="h-[50px]"/>
+      </NuxtLink>
     </div>
     <!-- Right Side -->
     <div class="flex-none">
