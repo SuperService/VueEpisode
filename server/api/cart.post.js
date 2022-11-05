@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
     const session = await stripe.checkout.sessions.create({
         cancel_url: "https://sauce-shopping.stormkit.dev/cart",
-        success_url: "https://sauce-shopping.stormkit.dev/success",
+        success_url: "https://sauce-shopping.stormkit.dev/checkout/success",
         mode: "payment",
         line_items: lineItems
     })

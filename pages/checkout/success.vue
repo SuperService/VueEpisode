@@ -3,7 +3,10 @@
   cartStore.items = [];
 </script>
 <template>
-  <div class="mt-10 max-w-6xl mx-auto p-5">
-    <h1 class="text-3xl">Thank you for your purchase!</h1>
+  <div class="flex justify-center items-center">
+    <img src="/thanks.webp" alt="thanks for your purchase" />
   </div>
 </template>
+<style lang="sass">
+
+</style>
