@@ -1,10 +1,21 @@
 <script setup>
+const route = useRoute();
 const alerts = useAlertsStore();
 
 const { auth } = useDeskree();
+
+const altogic = useAltogic();
+
 definePageMeta({
   layout: "form-focus",
 });
+
+if (route.query.access_token) {
+  const res = await altogic.user.get(route.query.access_token);
+  if (!res.errors) {
+    await altogic.user.getUser();
+  }
+}
 
 const form = reactive({
   email: "",
@@ -15,7 +26,14 @@ const loading = ref(false);
 async function handleLogin() {
   loading.value = true;
   try {
-    await auth.login(form);
+    const res = await altogic.auth.signIn(form);
+    if (res.errors) {
+      alerts.error(
+        res.errors.items[0].message
+      );
+      return;
+    }
+    // await auth.login(form);
     useRouter().push("/");
   } catch (err) {
     alerts.error(
@@ -25,10 +43,14 @@ async function handleLogin() {
     loading.value = false;
   }
 }
+
 </script>
 <template>
   <div>
     <h2 class="card-title mb-5">Login</h2>
+    <a class="btn mb-5 w-full" href="https://c2-europe.altogic.com/_auth/6358d60c6e23b2d594f76481/google">
+      Google Login
+    </a>
     <FormKit
       type="form"
       :config="{ validationVisibility: 'submit' }"

@@ -1,11 +1,14 @@
 <script setup>
-const router = useRouter();
+// import altogic from "../altogic/altogic";
+
+// const router = useRouter();
 const alerts = useAlertsStore();
 definePageMeta({
   layout: "form-focus",
 });
 
-const deskree = useDeskree();
+// const deskree = useDeskree();
+const altogic = useAltogic();
 
 const form = reactive({
   email: "",
@@ -17,8 +20,10 @@ const loading = ref(false);
 async function handleRegistration(e) {
   loading.value = true;
   try {
-    await deskree.auth.signUp(form);
-    useRouter().push("/");
+    // await deskree.auth.signUp(form);
+    const res = await altogic.auth.signUp(form);
+    console.log(res);
+    // useRouter().push("/");
   } catch (err) {
     alerts.error("Error registering, please contact support");
   } finally {

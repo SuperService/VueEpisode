@@ -4,9 +4,11 @@ import { useRouter } from "vue-router";
 // user data persisted to local storage
 const tokenInLocalStorage = useLocalStorage("deskree_token", null);
 const userIdInLocalStorage = useLocalStorage("deskree_user_uid", null);
+
 const loggedInUser = ref(null);
 const loggedInUserInit = ref(false);
 const onAuthStateChangeCallbacks = ref([]);
+
 watch(loggedInUser, () => {
   onAuthStateChangeCallbacks.value.forEach((callback) => {
     callback(loggedInUser.value);
@@ -39,14 +41,16 @@ export function useDeskree() {
     onAuthStateChange(callback) {
       onAuthStateChangeCallbacks.value.push(callback);
     },
+    
     async signUp({ email, password }) {
       // hit signup endpoint on deskree
       const res = await $fetch("/auth/accounts/signup", {
         method: "POST",
         baseURL,
         body: { email, password },
-      });
+      });      
       const user = res.data;
+      
 
       // store the token locally
       userIdInLocalStorage.value = user.uid;

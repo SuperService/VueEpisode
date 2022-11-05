@@ -33,6 +33,7 @@ const textColor = computed(() => {
   if (color === "black") return "gray-700";
   return color + "-200";
 });
+
 const fillColor = computed(() =>
   ["white", "black"].includes(color) ? color : color + "-600"
 );
@@ -47,6 +48,7 @@ const hw = computed(() => {
 
 setTimeout(() => (hidden.value = false), 1);
 </script>
+
 <template>
   <div role="status">
     <svg

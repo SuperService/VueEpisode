@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-export const useProductStore = defineStore("ProductStore", {
+export const useProductStore2Altogic = defineStore("ProductStore2Altogic", {
   state: () => {
     const route = useRoute();
     return {
@@ -11,9 +11,15 @@ export const useProductStore = defineStore("ProductStore", {
       /**
        * Different ways of fetching the listing of products (filters, order, search)
        */
+    //   filters: {
+    //     "fields.heatLevel": route.query['fields.heatLevel'] || "",
+    //     order: route.query.order || "fields.heatLevel",
+    //     query: route.query.query || "",
+    //   },
+
       filters: {
         "fields.heatLevel": route.query['fields.heatLevel'] || "",
-        order: route.query.order || "fields.heatLevel",
+        order: route.query.order || "",
         query: route.query.query || "",
       },
 
@@ -34,31 +40,37 @@ export const useProductStore = defineStore("ProductStore", {
   },
   actions: {
     async fetchProducts() {
+      const altogic = useAltogic();
+
+      const res = await altogic.product.getProducts(this.filters);
+      this.products = res.data;
+      return this.products;
+
       /**            
       const res = await $fetch("/api/products");
       this.products = res;
       return this.products;
        */
 
-      const { $contentful  } = useNuxtApp();
-      const entries = await $contentful.getEntries({
-        content_type: "product",
-        ...this.filters
-      })
-      this.products = entries.items;
-      return this.products;
+    //   const { $contentful  } = useNuxtApp();
+    //   const entries = await $contentful.getEntries({
+    //     content_type: "product",
+    //     ...this.filters
+    //   })
+    //   this.products = entries.items;
+    //   return this.products;
     },
 
     async fetchProduct(id) {
-      const products = await this.fetchProducts();
-      this.singleProduct = products.find((p) => {
-        return p.sys.id === id;
-      });
-      return this.singleProduct;
+    //   const products = await this.fetchProducts();
+    //   this.singleProduct = products.find((p) => {
+    //     return p.sys.id === id;
+    //   });
+    //   return this.singleProduct;
     },
   },
 });
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useProductStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useProductStore2Altogic, import.meta.hot));
 }
