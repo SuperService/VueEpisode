@@ -4,8 +4,11 @@ import { createClient } from "altogic";
 const loggedInUser = ref(null);
 
 export function useAltogic() {
-    const envUrl = useRuntimeConfig().public.altogicEnvUrl;
-    const clientKey = useRuntimeConfig().public.altogicClientKey;
+    // const envUrl = useRuntimeConfig().public.altogicEnvUrl;
+    // const clientKey = useRuntimeConfig().public.altogicClientKey;
+
+    const envUrl = 'https://te4g-o2jj.c2-europe.altogic.com';
+    const clientKey = 'e680a5d5179b4b0fb9611a15d247278f';
     
     const altogic = createClient(envUrl, clientKey);
     const fullLoadingStore = useFullLoadingStore();
@@ -66,4 +69,4 @@ export function useAltogic() {
         product,
         loggedInUser
     }
-}
+} 
